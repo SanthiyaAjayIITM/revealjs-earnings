@@ -1,165 +1,135 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Quarterly Earnings — Interactive RevealJS Report</title>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quarterly Earnings — RevealJS</title>
 
-    <!-- RevealJS core & theme (CDN quick start) -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/reveal.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/theme/white.css" id="theme" />
+  <!-- RevealJS core CSS + theme -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/theme/white.css">
 
-    <!-- Code syntax highlighting theme -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/plugin/highlight/monokai.css" />
+  <!-- Highlight.js (for code highlighting) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.8.0/styles/default.min.css">
 
-    <style>
-      /* Custom tweaks for a clean, finance-ready look */
-      .reveal h1, .reveal h2, .reveal h3 { letter-spacing: 0.2px; }
-      .brand-pill {
-        display: inline-block; padding: 6px 10px; border-radius: 999px;
-        border: 1px solid #ddd; font-size: 14px; margin-top: 10px;
-      }
-      .kpi-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 16px; }
-      .kpi { padding: 16px; border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.06); }
-      .kpi small { opacity: 0.75; }
-      .muted { opacity: 0.85; }
-      .r-fit { width: 100%; }
-    </style>
-  </head>
+  <!-- KaTeX (for math rendering) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
 
-  <body>
-    <div class="reveal">
-      <div class="slides">
-        <!-- Title Slide -->
-        <section>
-          <h1>Quarterly Earnings Report</h1>
-          <h3 class="muted">Interactive Technical Briefing with RevealJS</h3>
-          <p class="brand-pill">Consultant: 23f1001281@ds.study.iitm.ac.in</p>
-          <aside class="notes">
-            Welcome! Use this slide to set context: period covered, data sources, and agenda. Press <kbd>S</kbd> to toggle speaker notes while presenting.
-          </aside>
-        </section>
+  <style>
+    /* Small custom theme tweaks */
+    .reveal { font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; }
+    .footer-email { position: absolute; right: 18px; bottom: 12px; font-size: 0.9rem; opacity: 0.8; }
+    .chart { height: 360px; margin: 12px auto; }
+  </style>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
 
-        <!-- Markdown Slide (Requirement: at least one Markdown slide) -->
-        <section data-markdown>
-          <textarea data-template>
-## Agenda (Markdown)
+      <!-- Title slide (contains email) -->
+      <section>
+        <h1>Quarterly Earnings Report</h1>
+        <h3>Technical Consultant — Financial Analytics</h3>
+        <p>Contact: <a href="mailto:23f1001281@ds.study.iitm.ac.in">23f1001281@ds.study.iitm.ac.in</a></p>
+        <aside class="notes">Welcome stakeholders. Give a 1-minute high-level summary: revenue, margin, guidance.</aside>
+      </section>
 
-- Overview of revenue & margins *(YoY/ QoQ)*
-- Key drivers & risks
-- Outlook & guidance
-- Q&A
+      <!-- Markdown slide (uses data-markdown) -->
+      <section data-markdown>
+        <textarea data-template>
+## Highlights (Markdown slide)
+
+- **Revenue** increased by **12%** YoY
+- **Operating margin** expanded
+- Guidance: positive trajectory for next quarter
 
 ---
 
-### KPI Snapshot
+### Quick takeaways
+- Cost discipline improved
+- Investment in automation continues
+        </textarea>
+      </section>
 
-- **Revenue:** $4.2B  
-- **Gross Margin:** 51.3%  
-- **EPS (Diluted):** $1.24
+      <!-- Animated fragments -->
+      <section>
+        <h2>Key Drivers</h2>
+        <ul>
+          <li class="fragment">Higher product volumes</li>
+          <li class="fragment">Favourable pricing mix</li>
+          <li class="fragment fade-up">Lower input costs</li>
+        </ul>
+        <aside class="notes">Advance through each fragment and elaborate with an example for each driver.</aside>
+      </section>
 
-> Tip: Press **O** for overview grid. Press **F** for fullscreen.
-          </textarea>
-        </section>
+      <!-- Code sample with syntax highlighting -->
+      <section>
+        <h2>Small data snippet</h2>
+        <pre><code class="language-python">import pandas as pd
 
-        <!-- Animated elements using fragments -->
-        <section>
-          <h2>Highlights (Fragments)</h2>
-          <ul>
-            <li class="fragment">QoQ revenue growth exceeded guidance midpoint</li>
-            <li class="fragment">Operating leverage from cloud subscriptions</li>
-            <li class="fragment fade-up">Working capital discipline improved FCF conversion</li>
-          </ul>
-          <aside class="notes">Reveal each bullet as you narrate the story; pace to audience reactions.</aside>
-        </section>
+# Load P&L snapshot
+pl = pd.read_csv('pl_snapshot.csv')
+print(pl[['line', 'this_quarter', 'prior_quarter']])
+        </code></pre>
+        <aside class="notes">Explain how this snippet reads the P&L and what columns matter for the analysis.</aside>
+      </section>
 
-        <!-- Simple KPI grid (static for demo) -->
-        <section>
-          <h2>KPIs</h2>
-          <div class="kpi-grid">
-            <div class="kpi"><h3>$4.2B</h3><small>Revenue</small></div>
-            <div class="kpi"><h3>51.3%</h3><small>Gross Margin</small></div>
-            <div class="kpi"><h3>$1.24</h3><small>EPS (Diluted)</small></div>
-          </div>
-          <aside class="notes">These values are placeholders—replace with live-bound data or updated numbers for your quarter.</aside>
-        </section>
+      <!-- Math / financial formula -->
+      <section>
+        <h2>Financial Formula</h2>
+        <p>Return on Equity (ROE):</p>
+        <p>\[\mathrm{ROE} = \dfrac{\text{Net Income}}{\text{Average Shareholders' Equity}}\]</p>
+        <aside class="notes">Point out how a small change in net income amplifies ROE when equity base is stable.</aside>
+      </section>
 
-        <!-- Code sample with syntax highlighting & line highlights -->
-        <section>
-          <h2>Code Sample — Earnings Parser</h2>
-          <pre><code class="language-python" data-line-numbers="1-3|5-9|11-14">
-import json
-from pathlib import Path
+      <!-- Mermaid-style diagram (uses plain HTML fallback) -->
+      <section>
+        <h2>Data Flow</h2>
+        <div class="r-stack">
+          <img class="fragment" src="https://via.placeholder.com/400x120?text=Data+Ingestion" />
+          <img class="fragment" src="https://via.placeholder.com/400x120?text=Analysis" />
+          <img class="fragment" src="https://via.placeholder.com/400x120?text=Dashboard+%26+Slides" />
+        </div>
+        <aside class="notes">Use this to explain ETL → analysis → reporting pipeline.</aside>
+      </section>
 
-# Load summarized earnings (mock)
-with open('data/summary.json') as f:
-    s = json.load(f)
+      <!-- Live demo iframe (lazy loaded) -->
+      <section>
+        <h2>Live Dashboard (iframe)</h2>
+        <iframe data-src="https://example.com/finance-dashboard" width="900" height="500" data-preload></iframe>
+        <aside class="notes">Switch to the live dashboard and highlight the revenue chart.</aside>
+      </section>
 
-# Compute simple margin
-margin = s["gross_profit"] / s["revenue"]
-print(f"Gross margin: {margin:.2%}")
+      <!-- Closing slide with publication instructions -->
+      <section>
+        <h2>Published Presentation</h2>
+        <p>This presentation is intended for GitHub Pages hosting. See deployment instructions in the presenter notes (or the repo README).</p>
+        <p class="footer-email">Contact: 23f1001281@ds.study.iitm.ac.in</p>
+        <aside class="notes">Tell stakeholders where to find the published slides and how to refresh the cache with ?v=1.</aside>
+      </section>
 
-# TODO: Hook this to live API or CSVs
-          </code></pre>
-          <aside class="notes">Use this to showcase reproducibility or data lineage. The highlight steps allow you to walk through the code.</aside>
-        </section>
-
-        <!-- Financial math (MathJax) -->
-        <section>
-          <h2>Financial Formulas</h2>
-          <p>Discounted Cash Flow (DCF) for firm value \(V\):</p>
-          <p>\[ V = \sum_{t=1}^{T} \frac{FCF_t}{(1 + r)^t} + \frac{TV_T}{(1 + r)^T} \]</p>
-          <p>Cost of Equity (CAPM): \(\; r_e = r_f + \beta (r_m - r_f) \;\)</p>
-          <aside class="notes">Briefly justify discount rate assumptions and sensitivity ranges.</aside>
-        </section>
-
-        <!-- Speaker notes explicit example -->
-        <section>
-          <h2>Guidance & Outlook</h2>
-          <p>Topline expected to grow within guidance range.</p>
-          <aside class="notes">Call out upside risks (new product launches) and downside risks (FX, macro). Reinforce capital allocation policy.</aside>
-        </section>
-
-        <!-- Live iframe demo placeholder (optional) -->
-        <section>
-          <h2>Live Dashboard (Optional)</h2>
-          <iframe data-src="https://observablehq.com/@plot" data-preload style="width:100%;height:60vh;border:0"></iframe>
-          <aside class="notes">Swap the src with your internal dashboard (if allowed) or a published chart.</aside>
-        </section>
-
-        <!-- Closing slide with email again -->
-        <section>
-          <h2>Thank You</h2>
-          <p>Contact: <a href="mailto:23f1001281@ds.study.iitm.ac.in">23f1001281@ds.study.iitm.ac.in</a></p>
-          <p class="muted">Add <code>?v=1</code>, <code>?v=2</code>, etc., to refresh cached content.</p>
-        </section>
-      </div>
     </div>
+  </div>
 
-    <!-- Reveal core -->
-    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/reveal.js"></script>
+  <!-- RevealJS core + plugins (CDN) -->
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/reveal.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/plugin/markdown/markdown.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/plugin/highlight/highlight.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/plugin/math/math.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/plugin/notes/notes.js"></script>
 
-    <!-- Plugins: Markdown, Highlight, Math, Notes -->
-    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/plugin/markdown/markdown.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/plugin/highlight/highlight.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/plugin/math/math.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/plugin/notes/notes.js"></script>
-
-    <script>
-      Reveal.initialize({
-        width: 1280,
-        height: 720,
-        margin: 0.04,
-        hash: true,
-        controls: true,
-        progress: true,
-        history: true,
-        transition: 'slide',
-        plugins: [ RevealMarkdown, RevealHighlight, RevealMath.KaTeX, RevealNotes ],
-        math: {
-          // Use KaTeX via plugin defaults (CDN auto-included by plugin)
-        }
-      });
-    </script>
-  </body>
+  <script>
+    // Initialize Reveal with commonly used plugins
+    Reveal.initialize({
+      width: 1280,
+      height: 720,
+      margin: 0.04,
+      controls: true,
+      progress: true,
+      history: true,
+      transition: 'slide',
+      plugins: [ RevealMarkdown, RevealHighlight, RevealMath, RevealNotes ]
+    });
+  </script>
+</body>
 </html>
